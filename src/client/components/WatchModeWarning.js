@@ -22,7 +22,7 @@ const WatchModeWarning = ({ isWatching }: Props) =>
       fontWeight: 'bold',
     }}
   >
-    You are in the Watch mode. Only the latest location is being displayed here
+    Você está no modo de vigia.Apenas a última localização está sendo exibida aqui
   </div>;
 
 const mapStateToProps = (state: GlobalState) => ({

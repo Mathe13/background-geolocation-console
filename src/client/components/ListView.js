@@ -182,16 +182,16 @@ class ListView extends React.PureComponent {
       <div className={Styles.list} style={{ width: '100%', height: '100%' }}>
         <div className={Styles.listHeaderRow}>
           <span style={{ width: 180 }}>UUID</span>
-          <span style={{ width: 120 }}>RECORDED AT</span>
-          <span style={{ width: 120 }}>CREATED AT</span>
-          <span style={{ width: 90 }}>COORDINATE</span>
-          <span style={{ width: 80 }}>ACCURACY</span>
-          <span style={{ width: 80 }}>SPEED</span>
-          <span style={{ width: 80 }}>ODOMETER</span>
-          <span style={{ width: 180 }}>EVENT</span>
-          <span style={{ width: 80 }}>IS MOVING</span>
-          <span style={{ width: 140 }}>ACTIVITY</span>
-          <span style={{ width: 80 }}>BATTERY</span>
+          <span style={{ width: 120 }}>Lido em</span>
+          <span style={{ width: 120 }}>Criado em</span>
+          <span style={{ width: 90 }}>Cordenadas</span>
+          <span style={{ width: 80 }}>Precisão</span>
+          <span style={{ width: 80 }}>Velocidade</span>
+          <span style={{ width: 80 }}>Odometro</span>
+          <span style={{ width: 180 }}>Evento</span>
+          <span style={{ width: 80 }}>Está se movendo?</span>
+          <span style={{ width: 140 }}>Atividade</span>
+          <span style={{ width: 80 }}>Bateria</span>
         </div>
         <div style={{ width: '100%', height: 'calc(100% - 55px)' }}>
           <AutoSizer>

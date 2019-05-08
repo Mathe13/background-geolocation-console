@@ -55,11 +55,11 @@ class CustomMarkers extends React.Component {
   render() {
     return (
       <div className={Styles.content}>
-        <h3>Custom Markers</h3>
+        {/* <h3>Custom Markers</h3>
         <Input type="text" value={this.state.label} label="Label" onChange={this.onChangeLabel.bind(this)} />
         <Input type="text" value={this.state.position} label="Location" hint={this.state.positionHint} required onChange={this.onChangePosition.bind(this)} />
         <Input type="text" value={this.state.radius} label="Radius (for geofence circle)" onChange={this.onChangeRadius.bind(this)} />
-        <Button label="Add Marker" raised primary style={{width: '100%'}} onMouseUp={this.onAdd.bind(this)} />            
+        <Button label="Add Marker" raised primary style={{width: '100%'}} onMouseUp={this.onAdd.bind(this)} />             */}
       </div>
     );
   }

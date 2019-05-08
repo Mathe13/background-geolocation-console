@@ -13,12 +13,27 @@ type Props = {
 
 const DeviceField = ({ onChange, source, hasData, value }: Props) => {
   const entry = _.find(source, { value: value });
-  const text = !entry ? 'No device present' : entry.label;
+  const text = !entry ? 'Nenhum dispositivo presente' : entry.label;
   return source.length > 1
-    ? <Dropdown auto label='Device' onChange={onChange} source={source} value={value} />
+    ? < Dropdown auto label = 'Dispositivo'
+    onChange = {
+      onChange
+    }
+    source = {
+      source
+    }
+    value = {
+      value
+    }
+    />
     : hasData
-      ? <Input label='Device' readOnly value={text} />
-      : <Input label='Device' readOnly value='Loading devices ...' />;
+      ? < Input label = 'dispositivo'
+      readOnly value = {
+        text
+      }
+      />
+      : < Input label = 'dispositivo'
+      readOnly value = 'Loading devices ...' / > ;
 };
 
 export default DeviceField;

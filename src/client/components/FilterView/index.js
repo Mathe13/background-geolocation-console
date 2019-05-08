@@ -83,17 +83,17 @@ const FilterView = function ({
 }: Props): React$Element<any> {
   return (
     <div className='filterView'>
-      <AppBar title='Filter' rightIcon='refresh' onRightIconClick={onReload} />
+      <AppBar title='Filtros' rightIcon='refresh' onRightIconClick={onReload} />
       <div className={Styles.content}>
         <Card style={{ marginBottom: '10px' }}>
           <div className={Styles.content}>
-            <h3>Locations</h3>
+            <h3>Localizações</h3>
             <CompanyTokenField onChange={onChangeCompanyToken} source={companyTokens} value={companyToken} />
             <DeviceField onChange={onChangeDeviceId} source={devices} hasData={hasData} value={deviceId} />
             <DeleteDeviceLink />
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <DatePicker
-                label='Start date'
+                label = 'Data de início'
                 sundayFirstDayOfWeek
                 autoOk
                 style={{ flex: 1 }}
@@ -101,11 +101,11 @@ const FilterView = function ({
                 value={startDate}
                 inputFormat={formatDate}
               />
-              <TimePicker label='Time' style={{ flex: 1 }} onChange={onChangeStartDate} value={startDate} />
+              <TimePicker label='Tempo' style={{ flex: 1 }} onChange={onChangeStartDate} value={startDate} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <DatePicker
-                label='End date'
+                label = 'Data de finalização'
                 sundayFirstDayOfWeek
                 autoOk
                 style={{ flex: 1 }}
@@ -113,23 +113,23 @@ const FilterView = function ({
                 value={endDate}
                 inputFormat={formatDate}
               />
-              <TimePicker label='Time' style={{ flex: 1 }} onChange={onChangeEndDate} value={endDate} />
+              <TimePicker label='Tempo' style={{ flex: 1 }} onChange={onChangeEndDate} value={endDate} />
             </div>
-            <Button icon='refresh' label='reload' style={{ width: '100%' }} raised primary onMouseUp={onReload} />
+            <Button icon='refresh' label='recarregar' style={{ width: '100%' }} raised primary onMouseUp={onReload} />
 
             <div style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
-              <label style={{ flex: 1 }}>Watch mode</label>
+              <label style={{ flex: 1 }}>Modo de vigia</label>
               <Switch checked={isWatching} onChange={onChangeIsWatching} style={{ flex: 1 }} />
             </div>
           </div>
         </Card>
         <Card style={{marginBottom: '10px'}}>
           <div className={Styles.content}>
-            <h3>Map</h3>
-            <Checkbox checked={showMarkers} label='Show Markers' onChange={onChangeShowMarkers} />
-            <Checkbox checked={showPolyline} label='Show Polyline' onChange={onChangeShowPolyline} />
-            <Checkbox checked={showGeofenceHits} label='Show Geofences' onChange={onChangeShowGeofenceHits} />
-            <Input type="text" value={maxMarkers} label="Max markers" onChange={onChangeMaxMarkers} />
+            <h3>Mapa</h3>
+            <Checkbox checked={showMarkers} label='Mostrar marcadores' onChange={onChangeShowMarkers} />
+            <Checkbox checked={showPolyline} label='Mostrar linhas' onChange={onChangeShowPolyline} />
+            {/* <Checkbox checked={showGeofenceHits} label='Show Geofences' onChange={onChangeShowGeofenceHits} /> */}
+            <Input type="text" value={maxMarkers} label="Maxímo de marcadores" onChange={onChangeMaxMarkers} />
           </div>
         </Card>
         <Card>

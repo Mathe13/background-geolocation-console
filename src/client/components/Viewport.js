@@ -51,7 +51,7 @@ class Viewport extends Component {
           <HeaderView />
           <TooManyPointsWarning />
           <Tabs index={activeTabIndex} hideMode='display' onChange={this.changeActiveTabIndex} inverse>
-            <Tab label='Map'>
+            <Tab label='Mapa'>
               <MapView />
             </Tab>
             <Tab label='Data'>
