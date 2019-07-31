@@ -182,14 +182,14 @@ class ListView extends React.PureComponent {
       <div className={Styles.list} style={{ width: '100%', height: '100%' }}>
         <div className={Styles.listHeaderRow}>
           <span style={{ width: 180 }}>UUID</span>
-          <span style={{ width: 120 }}>Lido em</span>
-          <span style={{ width: 120 }}>Criado em</span>
+          <span style={{ width: 120 }}>Hora de leitura</span>
+          <span style={{ width: 120 }}>Hora de armazenamento</span>
           <span style={{ width: 90 }}>Cordenadas</span>
           <span style={{ width: 80 }}>Precisão</span>
           <span style={{ width: 80 }}>Velocidade</span>
-          <span style={{ width: 80 }}>Odometro</span>
+          <span style={{ width: 80 }}>Distância percorrida</span>
           <span style={{ width: 180 }}>Evento</span>
-          <span style={{ width: 80 }}>Está se movendo?</span>
+          <span style={{ width: 80 }}>Dispositivo em movimento</span>
           <span style={{ width: 140 }}>Atividade</span>
           <span style={{ width: 80 }}>Bateria</span>
         </div>

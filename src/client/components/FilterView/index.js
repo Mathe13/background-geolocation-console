@@ -87,7 +87,7 @@ const FilterView = function ({
       <div className={Styles.content}>
         <Card style={{ marginBottom: '10px' }}>
           <div className={Styles.content}>
-            <h3>Localizações</h3>
+            <h3>Filtros</h3>
             <CompanyTokenField onChange={onChangeCompanyToken} source={companyTokens} value={companyToken} />
             <DeviceField onChange={onChangeDeviceId} source={devices} hasData={hasData} value={deviceId} />
             <DeleteDeviceLink />
@@ -101,7 +101,7 @@ const FilterView = function ({
                 value={startDate}
                 inputFormat={formatDate}
               />
-              <TimePicker label='Tempo' style={{ flex: 1 }} onChange={onChangeStartDate} value={startDate} />
+              <TimePicker label='Hora de início' style={{ flex: 1 }} onChange={onChangeStartDate} value={startDate} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <DatePicker
@@ -113,12 +113,12 @@ const FilterView = function ({
                 value={endDate}
                 inputFormat={formatDate}
               />
-              <TimePicker label='Tempo' style={{ flex: 1 }} onChange={onChangeEndDate} value={endDate} />
+              <TimePicker label='Hora de finalização' style={{ flex: 1 }} onChange={onChangeEndDate} value={endDate} />
             </div>
             <Button icon='refresh' label='recarregar' style={{ width: '100%' }} raised primary onMouseUp={onReload} />
 
             <div style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
-              <label style={{ flex: 1 }}>Modo de vigia</label>
+              <label style={{ flex: 1 }}>Localização atual</label>
               <Switch checked={isWatching} onChange={onChangeIsWatching} style={{ flex: 1 }} />
             </div>
           </div>
@@ -126,10 +126,10 @@ const FilterView = function ({
         <Card style={{marginBottom: '10px'}}>
           <div className={Styles.content}>
             <h3>Mapa</h3>
-            <Checkbox checked={showMarkers} label='Mostrar marcadores' onChange={onChangeShowMarkers} />
-            <Checkbox checked={showPolyline} label='Mostrar linhas' onChange={onChangeShowPolyline} />
+            <Checkbox checked={showMarkers} label='Mostrar pontos de coleta' onChange={onChangeShowMarkers} />
+            <Checkbox checked={showPolyline} label='Mostrar rotas de coleta' onChange={onChangeShowPolyline} />
             {/* <Checkbox checked={showGeofenceHits} label='Show Geofences' onChange={onChangeShowGeofenceHits} /> */}
-            <Input type="text" value={maxMarkers} label="Maxímo de marcadores" onChange={onChangeMaxMarkers} />
+            <Input type="text" value={maxMarkers} label="Numero de leituras a exibir" onChange={onChangeMaxMarkers} />
           </div>
         </Card>
         <Card>

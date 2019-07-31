@@ -12,7 +12,7 @@ import logo from '../assets/images/transistor-logo.svg';
 
 const HeaderView = () =>
   <
-  AppBar title = 'Background Geolocation Console'
+  AppBar title = 'MDM Console'
 leftIcon = 'menu' >
   <
   Navigation type = 'horizontal' >

@@ -54,7 +54,7 @@ class Viewport extends Component {
             <Tab label='Mapa'>
               <MapView />
             </Tab>
-            <Tab label='Data'>
+            <Tab label='Dados do deslocamento'>
               <div
                 style={{
                   position: 'absolute',
