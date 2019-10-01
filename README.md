@@ -25,16 +25,17 @@ If you are in an environment that supports opening a web browser, a browser wind
 
 ## Configure The Sample App
 
-The Background Geolocation [Sample App](https://github.com/transistorsoft/cordova-background-geolocation-SampleApp) is perfect for use with this web-application.  To configure the app, determine your IP address and pick a unique console username, then simply edit `Settings->url` and set it to `http://<your.ip.ad.dress>:9000/locations/<your-console-username>`.
+The Background Geolocation [Sample App](https://github.com/transistorsoft/cordova-background-geolocation-SampleApp) is perfect for use with this web-application. To configure the app, determine your IP address and pick a unique console username, then simply edit `Settings->url` and set it to `http://<your.ip.ad.dress>:9000/locations/<your-console-username>`.
 
-You may also want to configure `Settings->autoSync` to `false` while out field-testing as well, so that the app doesn't try syncing each recorded location to a possibly unreachable server running on your `localhost`.  Once you return after a test and you're back on your office Wifi, click the **[Sync]** button on the `Settings` screen to upload the cached locations to the **Background Geolocation Console** server.
+You may also want to configure `Settings->autoSync` to `false` while out field-testing as well, so that the app doesn't try syncing each recorded location to a possibly unreachable server running on your `localhost`. Once you return after a test and you're back on your office Wifi, click the **[Sync]** button on the `Settings` screen to upload the cached locations to the **Background Geolocation Console** server.
 
 ## Configure Your Own App
 
 As you integrate the background-geolocation plugin with your app, you may find it useful to post locations to the test console to verify your integration.
 
 ### React Native &amp; Cordova:
-If you want to post to the tracking console in your own app, it’s very easy: The plugin contains a helper method [#transistorTrackerParams](https://transistorsoft.github.io/react-native-background-geolocation-android/classes/_react_native_background_geolocation_android_.backgroundgeolocation.html#transistortrackerparams) to compose a params config suitable for consumption by the server.  It's up to you to provide the `device` plugin instance (*Cordova*: `cordova-plugin-device`, *React Native*: `react-native-device-info`, *Flutter*
+
+If you want to post to the tracking console in your own app, it’s very easy: The plugin contains a helper method [#transistorTrackerParams](https://transistorsoft.github.io/react-native-background-geolocation-android/classes/_react_native_background_geolocation_android_.backgroundgeolocation.html#transistortrackerparams) to compose a params config suitable for consumption by the server. It's up to you to provide the `device` plugin instance (_Cordova_: `cordova-plugin-device`, _React Native_: `react-native-device-info`, _Flutter_
 
 ```javascript
 //
@@ -43,20 +44,24 @@ If you want to post to the tracking console in your own app, it’s very easy: T
 // http://<your.ip.ad.dress>:9000
 //
 
-let username = 'your-custom-username';
-BackgroundGeolocation.ready({
-  url: 'http://<your-ip-address>:9000/locations',
-  params: BackgroundGeolocation.transistorTrackerParams(device) // <-- device plugin instance.
-}, (state) => {
-  BackgroundGeolocation.start();
-});
+let username = "your-custom-username";
+BackgroundGeolocation.ready(
+  {
+    url: "http://<your-ip-address>:9000/locations",
+    params: BackgroundGeolocation.transistorTrackerParams(device) // <-- device plugin instance.
+  },
+  state => {
+    BackgroundGeolocation.start();
+  }
+);
 ```
 
 ### Flutter:
+
 ```dart
 Map deviceParams = await Config.deviceParams;
 
-BackgroundGeolocation.ready(Config(    
+BackgroundGeolocation.ready(Config(
     url: 'http://<your.ip.address>:9000/locations',
     params: deviceParams
 ));
@@ -64,12 +69,12 @@ BackgroundGeolocation.ready(Config(
 
 ## Running on Heroku
 
-You can deploy easily the app on Heroku by pushing the code to your heroku git repository.  
+You can deploy easily the app on Heroku by pushing the code to your heroku git repository.
 
-Before this, you will need to create 2 environment variables (either in the heroku dashboard, or by executing `heroku config:set <VARIABLE_NAME>=<VARIABLE_VALUE>`) :  
+Before this, you will need to create 2 environment variables (either in the heroku dashboard, or by executing `heroku config:set <VARIABLE_NAME>=<VARIABLE_VALUE>`) :
 
 - `NPM_CONFIG_PRODUCTION = false` : It will tell heroku to install `devDependencies` (and not only `dependencies`), required to build browserify's `bundle.min.js` file
-- `GOOGLE_MAPS_API_KEY = <PUT YOUR KEY HERE>` : A Google Maps API v3 allowed for your heroku domain (see <https://console.developers.google.com>)
+- `GOOGLE_MAPS_API_KEY = AIzaSyAfCfCRZ_Pj1H9-dZkf8yt8objm9oWXZU8` : A Google Maps API v3 allowed for your heroku domain (see <https://console.developers.google.com>)
 - Optionally, `DB_CONNECTION_URL = postgres://<username>:<password>@<hostname>:<port>/<dbname>` if you want to persist locations
   into a postgresql db (instead of a sqlite db which will be deleted after every heroku shutdown)
 

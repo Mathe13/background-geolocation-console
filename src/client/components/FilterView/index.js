@@ -1,16 +1,16 @@
 // @flow
-import React from 'react';
-import formatDate from '~/utils/formatDate';
+import React from "react";
+import formatDate from "~/utils/formatDate";
 
-import DeviceField from './DeviceField';
-import DeleteDeviceLink from './DeleteDeviceLink';
-import CompanyTokenField from './CompanyTokenField';
-import CustomMarkers from './CustomMarkers';
+import DeviceField from "./DeviceField";
+import DeleteDeviceLink from "./DeleteDeviceLink";
+import CompanyTokenField from "./CompanyTokenField";
+import CustomMarkers from "./CustomMarkers";
 
-import { connect } from 'react-redux';
-import { Input } from 'react-toolbox';
+import { connect } from "react-redux";
+import { Input } from "react-toolbox";
 
-import { type GlobalState } from '~/reducer/state';
+import { type GlobalState } from "~/reducer/state";
 import {
   type Device,
   type CompanyToken,
@@ -23,12 +23,20 @@ import {
   changeShowMarkers,
   changeShowPolyline,
   changeShowGeofenceHits,
-  changeMaxMarkers,
-} from '~/reducer/dashboard';
+  changeMaxMarkers
+} from "~/reducer/dashboard";
 
-import { AppBar, Button, DatePicker, TimePicker, Switch, Checkbox, Card } from 'react-toolbox';
+import {
+  AppBar,
+  Button,
+  DatePicker,
+  TimePicker,
+  Switch,
+  Checkbox,
+  Card
+} from "react-toolbox";
 
-import Styles from '~/assets/styles/app.css';
+import Styles from "~/assets/styles/app.css";
 
 type StateProps = {|
   hasData: boolean,
@@ -54,10 +62,10 @@ type DispatchProps = {|
   onChangeShowMarkers: (value: boolean) => any,
   onChangeShowPolyline: (value: boolean) => any,
   onChangeShowGeofenceHits: (value: boolean) => any,
-  onChangeMaxMarkers: (value: number) => any,
+  onChangeMaxMarkers: (value: number) => any
 |};
 type Props = {| ...StateProps, ...DispatchProps |};
-const FilterView = function ({
+const FilterView = function({
   hasData,
   devices,
   deviceId,
@@ -79,57 +87,111 @@ const FilterView = function ({
   onChangeShowMarkers,
   onChangeShowPolyline,
   onChangeShowGeofenceHits,
-  onChangeMaxMarkers,
+  onChangeMaxMarkers
 }: Props): React$Element<any> {
   return (
-    <div className='filterView'>
-      <AppBar title='Filtros' rightIcon='refresh' onRightIconClick={onReload} />
+    <div className="filterView">
+      <AppBar title="Filtros" rightIcon="refresh" onRightIconClick={onReload} />
       <div className={Styles.content}>
-        <Card style={{ marginBottom: '10px' }}>
+        <Card style={{ marginBottom: "10px" }}>
           <div className={Styles.content}>
             <h3>Filtros</h3>
-            <CompanyTokenField onChange={onChangeCompanyToken} source={companyTokens} value={companyToken} />
-            <DeviceField onChange={onChangeDeviceId} source={devices} hasData={hasData} value={deviceId} />
+            <CompanyTokenField
+              onChange={onChangeCompanyToken}
+              source={companyTokens}
+              value={companyToken}
+            />
+            <DeviceField
+              onChange={onChangeDeviceId}
+              source={devices}
+              hasData={hasData}
+              value={deviceId}
+            />
             <DeleteDeviceLink />
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <DatePicker
-                label = 'Data de início'
-                sundayFirstDayOfWeek
-                autoOk
-                style={{ flex: 1 }}
-                onChange={onChangeStartDate}
-                value={startDate}
-                inputFormat={formatDate}
-              />
-              <TimePicker label='Hora de início' style={{ flex: 1 }} onChange={onChangeStartDate} value={startDate} />
+            <h4>Período de Coleta</h4>
+            <div
+              style={{
+                "border-radius": "4px",
+                border: "2px solid #ccc",
+                marginBottom: "8px"
+              }}
+            >
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <DatePicker
+                  label="Data de início"
+                  sundayFirstDayOfWeek
+                  autoOk
+                  style={{ flex: 1 }}
+                  onChange={onChangeStartDate}
+                  value={startDate}
+                  inputFormat={formatDate}
+                />
+                <TimePicker
+                  label="Hora de início"
+                  style={{ flex: 1 }}
+                  onChange={onChangeStartDate}
+                  value={startDate}
+                />
+              </div>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <DatePicker
+                  label="Data de finalização"
+                  sundayFirstDayOfWeek
+                  autoOk
+                  style={{ flex: 1 }}
+                  onChange={onChangeEndDate}
+                  value={endDate}
+                  inputFormat={formatDate}
+                />
+                <TimePicker
+                  label="Hora de finalização"
+                  style={{ flex: 1 }}
+                  onChange={onChangeEndDate}
+                  value={endDate}
+                />
+              </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <DatePicker
-                label = 'Data de finalização'
-                sundayFirstDayOfWeek
-                autoOk
-                style={{ flex: 1 }}
-                onChange={onChangeEndDate}
-                value={endDate}
-                inputFormat={formatDate}
-              />
-              <TimePicker label='Hora de finalização' style={{ flex: 1 }} onChange={onChangeEndDate} value={endDate} />
-            </div>
-            <Button icon='refresh' label='recarregar' style={{ width: '100%' }} raised primary onMouseUp={onReload} />
+            <Button
+              icon="refresh"
+              label="recarregar"
+              style={{ width: "100%" }}
+              raised
+              primary
+              onMouseUp={onReload}
+            />
 
-            <div style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
+            <div
+              style={{ display: "flex", flexDirection: "row", marginTop: 10 }}
+            >
               <label style={{ flex: 1 }}>Localização atual</label>
-              <Switch checked={isWatching} onChange={onChangeIsWatching} style={{ flex: 1 }} />
+              <Switch
+                checked={isWatching}
+                onChange={onChangeIsWatching}
+                style={{ flex: 1 }}
+              />
             </div>
           </div>
         </Card>
-        <Card style={{marginBottom: '10px'}}>
+        <Card style={{ marginBottom: "10px" }}>
           <div className={Styles.content}>
             <h3>Mapa</h3>
-            <Checkbox checked={showMarkers} label='Mostrar pontos de coleta' onChange={onChangeShowMarkers} />
-            <Checkbox checked={showPolyline} label='Mostrar rotas de coleta' onChange={onChangeShowPolyline} />
+            <Checkbox
+              checked={showMarkers}
+              label="Mostrar pontos de coleta"
+              onChange={onChangeShowMarkers}
+            />
+            <Checkbox
+              checked={showPolyline}
+              label="Mostrar rotas de coleta"
+              onChange={onChangeShowPolyline}
+            />
             {/* <Checkbox checked={showGeofenceHits} label='Show Geofences' onChange={onChangeShowGeofenceHits} /> */}
-            <Input type="text" value={maxMarkers} label="Numero de leituras a exibir" onChange={onChangeMaxMarkers} />
+            <Input
+              type="text"
+              value={maxMarkers}
+              label="Numero de leituras a exibir"
+              onChange={onChangeMaxMarkers}
+            />
           </div>
         </Card>
         <Card>
@@ -140,24 +202,28 @@ const FilterView = function ({
   );
 };
 
-
-const mapStateToProps = function (state: GlobalState): StateProps {
+const mapStateToProps = function(state: GlobalState): StateProps {
   return {
     deviceId: state.dashboard.deviceId,
     companyToken: state.dashboard.companyToken,
     startDate: state.dashboard.startDate,
     endDate: state.dashboard.endDate,
-    devices: state.dashboard.devices.map((device: Device) => ({ value: device.id, label: device.name })),
-    companyTokens: state.dashboard.companyTokens.map((companyToken: CompanyToken) => ({
-      value: companyToken.id,
-      label: companyToken.name,
+    devices: state.dashboard.devices.map((device: Device) => ({
+      value: device.id,
+      label: device.name
     })),
+    companyTokens: state.dashboard.companyTokens.map(
+      (companyToken: CompanyToken) => ({
+        value: companyToken.id,
+        label: companyToken.name
+      })
+    ),
     hasData: state.dashboard.hasData,
     isWatching: state.dashboard.isWatching,
     showGeofenceHits: state.dashboard.showGeofenceHits,
     showPolyline: state.dashboard.showPolyline,
     showMarkers: state.dashboard.showMarkers,
-    maxMarkers: state.dashboard.maxMarkers,
+    maxMarkers: state.dashboard.maxMarkers
   };
 };
 
@@ -171,7 +237,10 @@ const mapDispatchToProps: DispatchProps = {
   onChangeShowMarkers: changeShowMarkers,
   onChangeShowPolyline: changeShowPolyline,
   onChangeShowGeofenceHits: changeShowGeofenceHits,
-  onChangeMaxMarkers: changeMaxMarkers,
+  onChangeMaxMarkers: changeMaxMarkers
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterView);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilterView);
