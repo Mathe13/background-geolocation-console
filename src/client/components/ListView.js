@@ -146,25 +146,25 @@ class ListView extends React.PureComponent {
         <span style={{ width: 120 }}>
           <span>{item.created_at}</span>
         </span>
-        <span style={{ width: 90 }}>
+        <span style={{ width: 120 }}>
           <span>{item.coordinate}</span>
         </span>
-        <span style={{ width: 80 }}>
+        <span style={{ width: 120 }}>
           <span>{item.accuracy}</span>
         </span>
-        <span style={{ width: 80 }}>
+        <span style={{ width: 120 }}>
           <span>{item.speed}</span>
         </span>
-        <span style={{ width: 80 }}>
+        <span style={{ width: 120 }}>
           <span>{item.odometer}</span>
         </span>
 
-        <span style={{ width: 80 }}>
-          <span>{item.is_moving == true ? "Sim" : "Não"}</span>
+        <span style={{ width: 120 }}>
+          <span>{item.is_moving}</span>
         </span>
 
         <span
-          style={{ width: 80 }}
+          style={{ width: 120 }}
           className={
             item.battery_is_charging
               ? Styles.tableCellGreen
