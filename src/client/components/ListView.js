@@ -160,7 +160,7 @@ class ListView extends React.PureComponent {
         </span>
 
         <span style={{ width: 120 }}>
-          <span>{item.is_moving}</span>
+          <span>{item.is_moving == "true" ? "Sim" : "Não"}</span>
         </span>
 
         <span
