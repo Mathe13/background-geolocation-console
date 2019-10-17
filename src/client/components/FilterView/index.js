@@ -6,7 +6,7 @@ import DeviceField from "./DeviceField";
 import DeleteDeviceLink from "./DeleteDeviceLink";
 import CompanyTokenField from "./CompanyTokenField";
 import CustomMarkers from "./CustomMarkers";
-
+import datepicker_theme from "../../assets/styles/datepicker.css"
 import { connect } from "react-redux";
 import { Input } from "react-toolbox";
 
@@ -95,7 +95,7 @@ const FilterView = function({
       <div className={Styles.content}>
         <Card style={{ marginBottom: "10px" }}>
           <div className={Styles.content}>
-            <h3>Filtros</h3>
+            <h3>Menu</h3>
             <CompanyTokenField
               onChange={onChangeCompanyToken}
               source={companyTokens}
@@ -121,6 +121,7 @@ const FilterView = function({
                   label="Data de início"
                   sundayFirstDayOfWeek
                   autoOk
+                  theme={datepicker_theme}
                   style={{ flex: 1 }}
                   onChange={onChangeStartDate}
                   value={startDate}
@@ -129,6 +130,7 @@ const FilterView = function({
                 <TimePicker
                   label="Hora de início"
                   style={{ flex: 1 }}
+                  theme={datepicker_theme}
                   onChange={onChangeStartDate}
                   value={startDate}
                 />
@@ -138,14 +140,16 @@ const FilterView = function({
                   label="Data de finalização"
                   sundayFirstDayOfWeek
                   autoOk
-                  style={{ flex: 1 }}
+                  theme={datepicker_theme}
+                  style={{ flex: 1, marginTop: '20px'}}
                   onChange={onChangeEndDate}
                   value={endDate}
                   inputFormat={formatDate}
                 />
                 <TimePicker
                   label="Hora de finalização"
-                  style={{ flex: 1 }}
+                  style={{ flex: 1, marginTop: '20px' }}
+                  theme={datepicker_theme}
                   onChange={onChangeEndDate}
                   value={endDate}
                 />
@@ -177,12 +181,12 @@ const FilterView = function({
             <h3>Mapa</h3>
             <Checkbox
               checked={showMarkers}
-              label="Mostrar pontos de coleta"
+              label="Mostrar pontos de leitura"
               onChange={onChangeShowMarkers}
             />
             <Checkbox
               checked={showPolyline}
-              label="Mostrar rotas de coleta"
+              label="Mostrar rota percorrida"
               onChange={onChangeShowPolyline}
             />
             {/* <Checkbox checked={showGeofenceHits} label='Show Geofences' onChange={onChangeShowGeofenceHits} /> */}

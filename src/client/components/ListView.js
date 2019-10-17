@@ -1,19 +1,24 @@
 // @flow
-import React from 'react';
+import React from "react";
 
-import { connect } from 'react-redux';
-import moment from 'moment';
-import { List, AutoSizer } from 'react-virtualized';
-import classNames from 'classnames';
+import { connect } from "react-redux";
+import moment from "moment";
+import { List, AutoSizer } from "react-virtualized";
+import classNames from "classnames";
 
-import Styles from '../assets/styles/app.css';
+import Styles from "../assets/styles/app.css";
 
-import { type Location, setSelectedLocation } from '~/reducer/dashboard';
-import { type GlobalState } from '~/reducer/state';
-import { createSelector } from 'reselect';
+import { type Location, setSelectedLocation } from "~/reducer/dashboard";
+import { type GlobalState } from "~/reducer/state";
+import { createSelector } from "reselect";
 
-import { changeTabBus, type ChangeTabPayload, scrollToRowBus, type ScrollToRowPayload } from '~/globalBus';
-import _ from 'lodash';
+import {
+  changeTabBus,
+  type ChangeTabPayload,
+  scrollToRowBus,
+  type ScrollToRowPayload
+} from "~/globalBus";
+import _ from "lodash";
 
 type LocationRow = {|
   uuid: string,
@@ -28,41 +33,51 @@ type LocationRow = {|
   activity: string,
   battery_level: string,
   battery_is_charging: boolean,
-  event: string,
+  event: string
 |};
 type StateProps = {|
   locations: LocationRow[],
   selectedLocationId: string,
-  isActiveTab: boolean,
+  isActiveTab: boolean
 |};
 
 type DispatchProps = {|
-  onRowSelect: (id: string) => any,
+  onRowSelect: (id: string) => any
 |};
 
 type Props = {| ...StateProps, ...DispatchProps |};
 
 const getRowData = (location: Location): LocationRow => {
-  let event = location.event || '';
+  let event = location.event || "";
   switch (location.event) {
-    case 'geofence':
-      event = location.event + ': ' + location.geofence.action + ' ' + location.geofence.identifier;
+    case "geofence":
+      event =
+        location.event +
+        ": " +
+        location.geofence.action +
+        " " +
+        location.geofence.identifier;
       break;
   }
   return {
     uuid: location.uuid,
     device_id: location.device_id,
-    coordinate: location.latitude.toFixed(6) + ', ' + location.longitude.toFixed(6),
-    recorded_at: moment(new Date(location.recorded_at)).format('MM-DD HH:mm:ss:SSS'),
-    created_at: moment(new Date(location.created_at)).format('MM-DD HH:mm:ss:SSS'),
-    is_moving: location.is_moving ? 'true' : 'false',
+    coordinate:
+      location.latitude.toFixed(6) + ", " + location.longitude.toFixed(6),
+    recorded_at: moment(new Date(location.recorded_at)).format(
+      "MM-DD HH:mm:ss:SSS"
+    ),
+    created_at: moment(new Date(location.created_at)).format(
+      "MM-DD HH:mm:ss:SSS"
+    ),
+    is_moving: location.is_moving ? "true" : "false",
     accuracy: location.accuracy,
     speed: location.speed,
     odometer: location.odometer,
     event: event,
     activity: `${location.activity_type} (${location.activity_confidence}%)`,
     battery_level: `${(location.battery_level * 100).toFixed(0)}%`,
-    battery_is_charging: location.battery_is_charging,
+    battery_is_charging: location.battery_is_charging
   };
 };
 
@@ -71,12 +86,12 @@ class ListView extends React.PureComponent {
   list: any;
   postponedScrollToRowPayload: ?ScrollToRowPayload = null;
 
-  componentWillMount () {
+  componentWillMount() {
     scrollToRowBus.subscribe(this.scrollToRow);
     changeTabBus.subscribe(this.changeTab);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     scrollToRowBus.unsubscribe(this.scrollToRow);
     changeTabBus.unsubscribe(this.changeTab);
   }
@@ -87,7 +102,7 @@ class ListView extends React.PureComponent {
     }
   };
 
-  scrollToRowIfPostponed () {
+  scrollToRowIfPostponed() {
     if (this.postponedScrollToRowPayload) {
       this.scrollToRow(this.postponedScrollToRowPayload);
       this.postponedScrollToRowPayload = null;
@@ -107,97 +122,79 @@ class ListView extends React.PureComponent {
     }
   };
 
-  rowRenderer = ({ index, isScrolling, isVisible, key, parent, style }: any) => {
+  rowRenderer = ({
+    index,
+    isScrolling,
+    isVisible,
+    key,
+    parent,
+    style
+  }: any) => {
     const item = this.props.locations[index];
     return (
       <div
         key={key}
-        className={classNames(Styles.listRow, { [Styles.selectedRow]: item.uuid === this.props.selectedLocationId })}
+        className={classNames(Styles.listRow, {
+          [Styles.selectedRow]: item.uuid === this.props.selectedLocationId
+        })}
         style={style}
         onClick={() => this.props.onRowSelect(item.uuid)}
       >
-        <span style={{ width: 180 }}>
-          <span>
-            {item.uuid}
-          </span>
+        <span style={{ width: 120 }}>
+          <span>{item.recorded_at}</span>
         </span>
         <span style={{ width: 120 }}>
-          <span>
-            {item.recorded_at}
-          </span>
-        </span>
-        <span style={{ width: 120 }}>
-          <span>
-            {item.created_at}
-          </span>
+          <span>{item.created_at}</span>
         </span>
         <span style={{ width: 90 }}>
-          <span>
-            {item.coordinate}
-          </span>
+          <span>{item.coordinate}</span>
         </span>
         <span style={{ width: 80 }}>
-          <span>
-            {item.accuracy}
-          </span>
+          <span>{item.accuracy}</span>
         </span>
         <span style={{ width: 80 }}>
-          <span>
-            {item.speed}
-          </span>
+          <span>{item.speed}</span>
         </span>
         <span style={{ width: 80 }}>
-          <span>
-            {item.odometer}
-          </span>
+          <span>{item.odometer}</span>
         </span>
-        <span style={{ width: 180 }}>
-          <span>
-            <strong>
-              {item.event}
-            </strong>
-          </span>
-        </span>
+
         <span style={{ width: 80 }}>
-          <span>
-            {item.is_moving}
-          </span>
+          <span>{item.is_moving == true ? "Sim" : "Não"}</span>
         </span>
-        <span style={{ width: 140 }}>
-          <span>
-            {item.activity}
-          </span>
-        </span>
-        <span style={{ width: 80 }} className={item.battery_is_charging ? Styles.tableCellGreen : Styles.tableCellRed}>
-          <span>
-            {item.battery_level}
-          </span>
+
+        <span
+          style={{ width: 80 }}
+          className={
+            item.battery_is_charging
+              ? Styles.tableCellGreen
+              : Styles.tableCellRed
+          }
+        >
+          <span>{item.battery_level}</span>
         </span>
       </div>
     );
   };
-  render () {
+  render() {
     setTimeout(() => this.list && this.list.forceUpdateGrid(), 1);
     return (
-      <div className={Styles.list} style={{ width: '100%', height: '100%' }}>
+      <div className={Styles.list} style={{ width: "100%", height: "100%" }}>
         <div className={Styles.listHeaderRow}>
-          <span style={{ width: 180 }}>UUID</span>
-          <span style={{ width: 120 }}>Hora de leitura</span>
-          <span style={{ width: 120 }}>Hora de armazenamento</span>
-          <span style={{ width: 90 }}>Cordenadas</span>
-          <span style={{ width: 80 }}>Precisão</span>
-          <span style={{ width: 80 }}>Velocidade</span>
-          <span style={{ width: 80 }}>Distância percorrida</span>
-          <span style={{ width: 180 }}>Evento</span>
-          <span style={{ width: 80 }}>Dispositivo em movimento</span>
-          <span style={{ width: 140 }}>Atividade</span>
-          <span style={{ width: 80 }}>Bateria</span>
+          <span style={{ width: 120 }}>Lido em</span>
+          <span style={{ width: 120 }}>Armazenado em</span>
+          <span style={{ width: 120 }}>Cordenadas</span>
+          <span style={{ width: 120 }}>Precisão</span>
+          <span style={{ width: 120 }}>Velocidade</span>
+          <span style={{ width: 120 }}>Distância percorrida</span>
+          <span style={{ width: 120 }}>se movendo</span>
+          <span style={{ width: 120 }}>Bateria</span>
         </div>
-        <div style={{ width: '100%', height: 'calc(100% - 55px)' }}>
+        <div style={{ width: "100%", height: "calc(100% - 55px)" }}>
           <AutoSizer>
-            {({ width, height }: { width: number, height: number }) =>
+            {({ width, height }: { width: number, height: number }) => (
               <List
-                scrollToAlignment='start'
+                scrollToAlignment="start"
                 style={{ outline: 0 }}
                 ref={(list: React$Element<any>) => (this.list = list)}
                 width={1260}
@@ -205,7 +202,8 @@ class ListView extends React.PureComponent {
                 rowCount={this.props.locations.length}
                 rowHeight={48}
                 rowRenderer={this.rowRenderer}
-              />}
+              />
+            )}
           </AutoSizer>
         </div>
       </div>
@@ -216,9 +214,13 @@ class ListView extends React.PureComponent {
 type LocationArgs = {
   isWatching: boolean,
   currentLocation: ?Location,
-  locations: Location[],
+  locations: Location[]
 };
-const getLocationsSource = function ({ locations, currentLocation, isWatching }: LocationArgs) {
+const getLocationsSource = function({
+  locations,
+  currentLocation,
+  isWatching
+}: LocationArgs) {
   if (isWatching) {
     return currentLocation ? [currentLocation] : [];
   } else {
@@ -226,7 +228,11 @@ const getLocationsSource = function ({ locations, currentLocation, isWatching }:
   }
 };
 
-const getLocations = function ({ locations, currentLocation, isWatching }: LocationArgs) {
+const getLocations = function({
+  locations,
+  currentLocation,
+  isWatching
+}: LocationArgs) {
   const source = getLocationsSource({ locations, currentLocation, isWatching });
   return source.map(getRowData);
 };
@@ -236,22 +242,26 @@ const getLocationsSelector = createSelector(
     (state: GlobalState) => ({
       locations: state.dashboard.locations,
       currentLocation: state.dashboard.currentLocation,
-      isWatching: state.dashboard.isWatching,
-    }),
+      isWatching: state.dashboard.isWatching
+    })
   ],
-  ({ locations, currentLocation, isWatching }: LocationArgs) => getLocations({ locations, currentLocation, isWatching })
+  ({ locations, currentLocation, isWatching }: LocationArgs) =>
+    getLocations({ locations, currentLocation, isWatching })
 );
 
-const mapStateToProps = function (state: GlobalState): StateProps {
+const mapStateToProps = function(state: GlobalState): StateProps {
   return {
     locations: getLocationsSelector(state),
     selectedLocationId: state.dashboard.selectedLocationId,
-    isActiveTab: state.dashboard.activeTab === 'list',
+    isActiveTab: state.dashboard.activeTab === "list"
   };
 };
 
 const mapDispatchToProps: DispatchProps = {
-  onRowSelect: setSelectedLocation,
+  onRowSelect: setSelectedLocation
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListView);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListView);
