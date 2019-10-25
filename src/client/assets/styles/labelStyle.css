@@ -1,0 +1,9 @@
+.label {
+    /* font-weight: bold; */
+    font-size: medium !important;
+    font-weight: bold;
+    color: black;
+    margin: 0 auto;
+    display: flex;
+    /* margin: 10px */
+}

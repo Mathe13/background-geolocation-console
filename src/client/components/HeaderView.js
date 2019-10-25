@@ -4,13 +4,13 @@ import React from "react";
 import { AppBar, Navigation, Link } from "react-toolbox";
 
 import Styles from "../assets/styles/app.css";
-import logo from "../assets/images/transistor-logo.svg";
+import logo from "../assets/images/uergs-log.png";
 
 const HeaderView = () => (
-  <AppBar title="MDM Console" leftIcon="menu">
+  <AppBar title="MDM Console" className={Styles.uergsprimary} leftIcon="menu">
     <Navigation type="horizontal">
-      <Link href="http://transistorsoft.com" label="">
-        <img className={Styles.logo} src={logo} />{" "}
+      <Link href="http://uergs.com.br/guaiba/" label="">
+        {/* <img className={Styles.logo} src={logo} />{" "} */}
       </Link>{" "}
     </Navigation>{" "}
   </AppBar>

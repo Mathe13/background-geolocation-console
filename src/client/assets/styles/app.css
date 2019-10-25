@@ -5,10 +5,18 @@
     flex-direction: row;
 }
 
+.uergsprimary {
+    background-color: #066c47 !important;
+}
+
+.uergssecondary {
+    background-color: #0ee899 !important;
+}
+
 .logo {
     width: 180px;
-    margin-top: -6px;
-    margin-right: -50px;
+    margin-top: 6px;
+    margin-right: 20px;
 }
 
 .workspace {

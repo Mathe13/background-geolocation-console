@@ -6,7 +6,7 @@ import DeviceField from "./DeviceField";
 import DeleteDeviceLink from "./DeleteDeviceLink";
 import CompanyTokenField from "./CompanyTokenField";
 import CustomMarkers from "./CustomMarkers";
-import datepicker_theme from "../../assets/styles/datepicker.css"
+import datepicker_theme from "../../assets/styles/datepicker.css";
 import { connect } from "react-redux";
 import { Input } from "react-toolbox";
 
@@ -91,7 +91,12 @@ const FilterView = function({
 }: Props): React$Element<any> {
   return (
     <div className="filterView">
-      <AppBar title="Filtros" rightIcon="refresh" onRightIconClick={onReload} />
+      <AppBar
+        title="Filtros"
+        rightIcon="refresh"
+        className={Styles.uergsprimary}
+        onRightIconClick={onReload}
+      />
       <div className={Styles.content}>
         <Card style={{ marginBottom: "10px" }}>
           <div className={Styles.content}>
@@ -141,14 +146,14 @@ const FilterView = function({
                   sundayFirstDayOfWeek
                   autoOk
                   theme={datepicker_theme}
-                  style={{ flex: 1, marginTop: '20px'}}
+                  style={{ flex: 1, marginTop: "20px" }}
                   onChange={onChangeEndDate}
                   value={endDate}
                   inputFormat={formatDate}
                 />
                 <TimePicker
                   label="Hora de finalização"
-                  style={{ flex: 1, marginTop: '20px' }}
+                  style={{ flex: 1, marginTop: "20px" }}
                   theme={datepicker_theme}
                   onChange={onChangeEndDate}
                   value={endDate}

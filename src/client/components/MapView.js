@@ -164,7 +164,7 @@ class MapView extends Component {
     this.locationAccuracyCircle = new google.maps.Circle({
       map: this.gmap,
       zIndex: 9,
-      fillColor: COLORS.light_blue,
+      fillColor: COLORS.green,
       fillOpacity: 0.4,
       strokeOpacity: 0
     });
