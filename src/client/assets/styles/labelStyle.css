@@ -1,7 +1,7 @@
 .label {
     /* font-weight: bold; */
     font-size: medium !important;
-    font-weight: bold;
+    font-weight: bold !important;
     color: black;
     margin: 0 auto;
     display: flex;

@@ -7,7 +7,11 @@ import Styles from "../assets/styles/app.css";
 import logo from "../assets/images/uergs-log.png";
 
 const HeaderView = () => (
-  <AppBar title="MDM Console" className={Styles.uergsprimary} leftIcon="menu">
+  <AppBar
+    title="Monitor de Deriva Marinha"
+    className={Styles.uergsprimary}
+    leftIcon="menu"
+  >
     <Navigation type="horizontal">
       <Link href="http://uergs.com.br/guaiba/" label="">
         {/* <img className={Styles.logo} src={logo} />{" "} */}
