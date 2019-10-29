@@ -8,7 +8,7 @@ import logo from "../assets/images/uergs-log.png";
 
 const HeaderView = () => (
   <AppBar
-    title="Monitor de Deriva Marinha"
+    title="Monitor de Deslocamento Marítimo"
     className={Styles.uergsprimary}
     leftIcon="menu"
   >
