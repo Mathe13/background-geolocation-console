@@ -113,7 +113,7 @@ const FilterView = function({
               value={deviceId}
             />
             <DeleteDeviceLink />
-            <h4>Período de Coleta</h4>
+            <h4> Período de Coleta - clique para selecionar </h4>
             <div
               style={{
                 "border-radius": "4px",

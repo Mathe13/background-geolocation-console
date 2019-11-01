@@ -155,7 +155,7 @@ class ListView extends React.PureComponent {
         <span style={{ width: 120 }}>
           <span>{item.speed}</span>
         </span>
-        <span style={{ width: 120 }}>
+        <span style={{ width: 150 }}>
           <span>{item.odometer}</span>
         </span>
 
@@ -184,9 +184,9 @@ class ListView extends React.PureComponent {
           <span style={{ width: 120 }}>Lido em</span>
           <span style={{ width: 120 }}>Armazenado em</span>
           <span style={{ width: 120 }}>Cordenadas</span>
-          <span style={{ width: 120 }}>Precisão</span>
+          <span style={{ width: 120 }}>Precisão(metros)</span>
           <span style={{ width: 120 }}>Velocidade</span>
-          <span style={{ width: 120 }}>Distância percorrida</span>
+          <span style={{ width: 150 }}>Distância percorrida(metros)</span>
           <span style={{ width: 120 }}>se movendo</span>
           <span style={{ width: 120 }}>Bateria</span>
         </div>

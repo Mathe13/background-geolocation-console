@@ -26,12 +26,12 @@ const DeviceField = ({ onChange, source, hasData, value }: Props) => {
     />
   ) : hasData ? (
     <div>
-      <Input label="dispositivo" theme={labelStyle} readOnly value={text} />
+      <Input label="Dispositivo" theme={labelStyle} readOnly value={text} />
     </div>
   ) : (
     <div>
       <Input
-        label="dispositivo"
+        label="Dispositivo"
         theme={labelStyle}
         readOnly
         value="Loading devices ..."
